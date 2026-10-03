@@ -15,15 +15,15 @@ def fix_name(row):
     row[:3]= parts[:3]
     return row
 #Пункт 2:Телефоны
-phone_pattern=re.compile(
-    r"(?:\+7|8)?s*"
+pattern_str: str = (
+    r"(?:\+7|8)?[\s-]*"
     r"\(?(\d{3})\)?[\s-]*"
     r"(\d{3})[\s-]*"
     r"(\d{2})[\s-]*"
     r"(\d{2})"
     r"(?:\s*\(?доб\.?\s*(\d+)\)?)?"
 )
-
+phone_pattern = re.compile(pattern_str)
 def fix_phone(phone):
     def repl(m):
         result = f"+7({m.group(1)}){m.group(2)}-{m.group(3)}-{m.group(4)}"
